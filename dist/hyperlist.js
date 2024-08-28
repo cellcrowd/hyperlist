@@ -70,7 +70,7 @@ var HyperList = function () {
       // As said above, these values get set to put the fixture elements into the
       // right visual state.
       HyperList.mergeStyle(wrapper, { position: 'absolute', height: '1px', opacity: 0 });
-    
+
       var fixture_height_factor = 7;
       HyperList.mergeStyle(fixture, { height: 10**fixture_height_factor + 'px' });
 
@@ -119,7 +119,7 @@ var HyperList = function () {
               // We found a new working value.
               low = cur;
             } else if (fixture.offsetHeight === 0 ){
-              // Half way is still too high. 
+              // Half way is still too high.
               high = cur;
             }
           }
@@ -458,8 +458,8 @@ var HyperList = function () {
       this._screenItemsLen = Math.ceil(containerHeight / averageHeight);
       this._containerSize = containerHeight;
 
-      // Cache 3 times the number of items that fit in the container viewport.
-      this._cachedItemsLen = Math.max(this._cachedItemsLen || 0, this._screenItemsLen * 3);
+      // Cache 4 times the number of items that fit in the container viewport.
+      this._cachedItemsLen = Math.max(this._cachedItemsLen || 0, this._screenItemsLen * 4);
       this._averageHeight = averageHeight;
 
       if (config.reverse) {
@@ -514,7 +514,7 @@ var HyperList = function () {
     value: function _getFrom(scrollTop) {
       var i = 0;
 
-      while (this._itemPositions[i] < scrollTop) {
+      while (this._itemPositions[i] < scrollTop - this._containerSize) {
         i++;
       }
 
